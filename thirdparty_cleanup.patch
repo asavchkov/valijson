@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index fb0ffa3..f60234f 100644
+index b9380a6..53d4860 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -65,58 +65,40 @@ endif()
+@@ -65,59 +65,41 @@ endif()
  find_package(Poco OPTIONAL_COMPONENTS JSON)
  find_package(Qt5Core)
  
@@ -76,6 +76,7 @@ index fb0ffa3..f60234f 100644
  
      set(TEST_SOURCES
 -        tests/test_adapter_comparison.cpp
+         tests/test_date_time_format.cpp
          tests/test_fetch_absolute_uri_document_callback.cpp
          tests/test_fetch_urn_document_callback.cpp
          tests/test_json_pointer.cpp
@@ -83,8 +84,8 @@ index fb0ffa3..f60234f 100644
          tests/test_jsoncpp_adapter.cpp
          tests/test_nlohmann_json_adapter.cpp
          tests/test_rapidjson_adapter.cpp
-@@ -128,7 +110,7 @@ if(valijson_BUILD_TESTS)
-         tests/test_yaml_cpp_adapter.cpp
+@@ -130,7 +112,7 @@ if(valijson_BUILD_TESTS)
+         tests/test_utf8_utils.cpp
      )
  
 -    set(TEST_LIBS gtest gtest_main jsoncpp json11 yamlcpp)
@@ -92,7 +93,7 @@ index fb0ffa3..f60234f 100644
  
      if(Boost_FOUND)
          include_directories(${Boost_INCLUDE_DIRS})
-@@ -151,6 +133,10 @@ if(valijson_BUILD_TESTS)
+@@ -153,6 +135,10 @@ if(valijson_BUILD_TESTS)
          endif()
      endif()
  
@@ -103,7 +104,7 @@ index fb0ffa3..f60234f 100644
      if(Poco_FOUND)
          include_directories(${Poco_INCLUDE_DIRS})
          list(APPEND TEST_SOURCES tests/test_poco_json_adapter.cpp)
-@@ -207,7 +193,7 @@ if(valijson_BUILD_TESTS)
+@@ -209,7 +195,7 @@ if(valijson_BUILD_TESTS)
          target_compile_definitions(test_suite PRIVATE "VALIJSON_BUILD_QT_ADAPTER")
      endif()
  
@@ -145,7 +146,7 @@ index e2bf78e..34b1ecf 100644
 \ No newline at end of file
 +}
 diff --git a/tests/test_validator_with_custom_regular_expression_engine.cpp b/tests/test_validator_with_custom_regular_expression_engine.cpp
-index 57f09d1..5629f0f 100644
+index 42423c4..44c38a3 100644
 --- a/tests/test_validator_with_custom_regular_expression_engine.cpp
 +++ b/tests/test_validator_with_custom_regular_expression_engine.cpp
 @@ -10,12 +10,10 @@
