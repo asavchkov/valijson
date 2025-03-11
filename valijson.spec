@@ -41,7 +41,10 @@ BuildRequires:  boost-devel
 BuildRequires:  cmake(gtest)
 BuildRequires:  cmake(jsoncpp)
 BuildRequires:  cmake(nlohmann_json)
-BuildRequires:  cmake(pocojson)
+# Disable Poco adaptor. The test suite fails to build against
+# Poco >= 1.14.0.
+# https://github.com/tristanpenman/valijson/issues/204
+#BuildRequires:  cmake(pocojson)
 BuildRequires:  cmake(qt5core)
 BuildRequires:  cmake(rapidjson)
 BuildRequires:  cmake(yaml-cpp)
@@ -65,7 +68,10 @@ Summary:        Header files for %{name}
 Requires:       boost-devel
 Requires:       cmake(jsoncpp)
 Requires:       cmake(nlohmann_json)
-Requires:       cmake(pocojson)
+# Disable Poco adaptor. The test suite fails to build against
+# Poco >= 1.14.0.
+# https://github.com/tristanpenman/valijson/issues/204
+#Requires:       cmake(pocojson)
 Requires:       cmake(qt5core)
 Requires:       cmake(rapidjson)
 Requires:       cmake(yaml-cpp)
