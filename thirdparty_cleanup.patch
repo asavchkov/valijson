@@ -1,9 +1,9 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index b9380a6..53d4860 100644
+index 553192e..5543557 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -65,59 +65,41 @@ endif()
- find_package(Poco OPTIONAL_COMPONENTS JSON)
+@@ -74,59 +74,40 @@ endif()
+ find_package(Poco COMPONENTS Foundation JSON)
  find_package(Qt5Core)
  
 -# jsoncpp library
@@ -50,7 +50,8 @@ index b9380a6..53d4860 100644
 +#    thirdparty/yaml-cpp/include
 +#)
 +
-+# Use system libraries where availale
++# Use system libraries for above dependencies where availale
++# GTest is included conditionally below
 +# json11 is deprecated
 +find_package(jsoncpp)
 +find_package(RapidJSON)
@@ -70,8 +71,6 @@ index b9380a6..53d4860 100644
 -    option(BUILD_GMOCK FALSE)
 -    option(INSTALL_GTEST FALSE)
 -    add_subdirectory(thirdparty/googletest)
-+    # GoogleTest requires at least C++14
-+    set(CMAKE_CXX_STANDARD 14)
 +    find_package(GTest REQUIRED)
  
      set(TEST_SOURCES
@@ -84,7 +83,7 @@ index b9380a6..53d4860 100644
          tests/test_jsoncpp_adapter.cpp
          tests/test_nlohmann_json_adapter.cpp
          tests/test_rapidjson_adapter.cpp
-@@ -130,7 +112,7 @@ if(valijson_BUILD_TESTS)
+@@ -139,7 +120,7 @@ if(valijson_BUILD_TESTS)
          tests/test_utf8_utils.cpp
      )
  
@@ -93,7 +92,7 @@ index b9380a6..53d4860 100644
  
      if(Boost_FOUND)
          include_directories(${Boost_INCLUDE_DIRS})
-@@ -153,6 +135,10 @@ if(valijson_BUILD_TESTS)
+@@ -162,6 +143,10 @@ if(valijson_BUILD_TESTS)
          endif()
      endif()
  
@@ -102,9 +101,18 @@ index b9380a6..53d4860 100644
 +    endif()
 +
      if(Poco_FOUND)
-         include_directories(${Poco_INCLUDE_DIRS})
-         list(APPEND TEST_SOURCES tests/test_poco_json_adapter.cpp)
-@@ -209,7 +195,7 @@ if(valijson_BUILD_TESTS)
+         if(COMPILER_SUPPORTS_CXX17)
+             list(APPEND TEST_SOURCES tests/test_poco_json_adapter.cpp)
+@@ -195,7 +180,7 @@ if(valijson_BUILD_TESTS)
+ 
+     if(NOT MSVC)
+         set_target_properties(test_suite PROPERTIES
+-            COMPILE_FLAGS " -pedantic -Werror -Wshadow -Wunused"
++            COMPILE_FLAGS " -pedantic -Wshadow -Wunused"
+             CXX_STANDARD 17
+         )
+     endif()
+@@ -226,7 +211,7 @@ if(valijson_BUILD_TESTS)
          target_compile_definitions(test_suite PRIVATE "VALIJSON_BUILD_QT_ADAPTER")
      endif()
  
