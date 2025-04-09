@@ -1,0 +1,16 @@
+# See the documentation for more information:
+# https://packit.dev/docs/configuration/
+
+upstream_project_url: https://github.com/tristanpenman/valijson
+
+jobs:
+  - job: pull_from_upstream
+    trigger: release
+    dist_git_branches:
+      fedora-rawhide:
+        fast_forward_merge_into:
+          - fedora-branched
+  - job: koji_build
+    trigger: commit
+    dist_git_branches:
+      - fedora-rawhide
