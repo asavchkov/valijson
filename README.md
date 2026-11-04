@@ -1,3 +1,0 @@
-# valijson
-
-The valijson package
