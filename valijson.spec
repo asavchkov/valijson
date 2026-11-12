@@ -12,7 +12,7 @@ Summary:        Header-only JSON Schema validation library for C++11
 %global forgeurl1 https://github.com/json-schema-org/JSON-Schema-Test-Suite
 # Use the same commit upstream uses in the submodule, otherwise some
 # tests may fail.
-%global tag1 7ab81c0
+%global tag1 7ab81c077a6ff1bcf8d3c35b7209e1b402d465de
 %forgemeta -a
 
 # valijson is distributed under BSD-2-Clause license, except for two
