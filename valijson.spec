@@ -93,10 +93,12 @@ mv -v thirdparty/JSON-Schema-Test-Suite-%{tag1}/ thirdparty/JSON-Schema-Test-Sui
 rm -v include/valijson/utils/json11_utils.hpp
 rm -v include/valijson/adapters/json11_adapter.hpp
 
-%build
+%conf
 %cmake \
     -DCMAKE_BUILD_TYPE=Release \
     %{?with_tests:-Dvalijson_BUILD_TESTS:BOOL=ON}
+
+%build
 %cmake_build --config Release
 
 %install
